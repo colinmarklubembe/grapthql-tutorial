@@ -8,11 +8,38 @@ const resolvers = {
     games() {
       return db.games;
     },
+    game(_, args) {
+      return db.games.find((game) => game.id === args.id);
+    },
     authors() {
       return db.authors;
     },
+    author(_, args) {
+      return db.authors.find((author) => author.id === args.id);
+    },
     reviews() {
       return db.reviews;
+    },
+    review(_, args) {
+      return db.reviews.find((review) => review.id === args.id);
+    },
+  },
+  Game: {
+    reviews(game) {
+      return db.reviews.filter((review) => review.gameId === game.id);
+    },
+  },
+  Author: {
+    reviews(author) {
+      return db.reviews.filter((review) => review.authorId === author.id);
+    },
+  },
+  Review: {
+    author(review) {
+      return db.authors.find((author) => author.id === review.authorId);
+    },
+    game(review) {
+      return db.games.find((game) => game.id === review.gameId);
     },
   },
 };
