@@ -69,17 +69,17 @@ const resolvers = {
     },
     updateGame(_, args) {
       const game = db.games.find((game) => game.id === args.id);
-      Object.assign(game, args);
+      Object.assign(game, args.game);
       return game;
     },
     updateAuthor(_, args) {
       const author = db.authors.find((author) => author.id === args.id);
-      Object.assign(author, args);
+      Object.assign(author, args.author);
       return author;
     },
     updateReview(_, args) {
       const review = db.reviews.find((review) => review.id === args.id);
-      Object.assign(review, args);
+      Object.assign(review, args.review);
       return review;
     },
     deleteGame(_, args) {
